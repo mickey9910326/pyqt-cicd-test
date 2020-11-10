@@ -1,11 +1,9 @@
 import sys
 
-from PyQt5.QtWidgets import QMainWindow, QApplication
-from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5 import QtWidgets
+from pyqtapp import ui_mainwindow
 
-from pyqtapp.ui_mainwindow import Ui_MainWindow
-
-class MainWindow(QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow, ui_mainwindow.Ui_MainWindow):
     def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
@@ -19,7 +17,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.textBrowser.append('btn2 clicked')
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())
