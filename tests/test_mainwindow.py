@@ -1,3 +1,6 @@
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from pyqtapp.__main__ import MainWindow
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtTest import QTest
