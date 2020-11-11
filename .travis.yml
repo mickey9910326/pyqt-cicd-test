@@ -45,7 +45,7 @@ script:
   - pyinstaller pyqtapp/__main__.py
   - ls -al ./build/__main__/
   - ls -al ./dist/__main__/
-  - tar zcvf main.tar -C dist __main__
+  - tar zcvf main.tar.gz -C dist __main__
 
 deploy:
   provider: releases
@@ -54,3 +54,5 @@ deploy:
   file: main.tar
   skip_cleanup: true
   draft: true
+  on:
+    branches: feat/pyinstaller
