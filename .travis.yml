@@ -45,10 +45,12 @@ script:
   - pyinstaller pyqtapp/__main__.py
   - ls -al ./build/__main__/
   - ls -al ./dist/__main__/
-  - tar zcvf main.tar __main__ -C dist
+  - tar zcvf main.tar -C dist __main__
 
 deploy:
   provider: releases
   draft: true
+  api_key: $GITHUB_TOKEN
   file: main.tar
   skip_cleanup: true
+  draft: true
