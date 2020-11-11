@@ -49,10 +49,10 @@ script:
 
 deploy:
   provider: releases
+  edge: true
+  cleanup: true
   draft: true
   api_key: $GITHUB_TOKEN
   file: main.tar
-  skip_cleanup: true
-  draft: true
   on:
-    branches: feat/pyinstaller
+    branch: feat/pyinstaller
