@@ -6,7 +6,7 @@ jobs:
       os: windows           # Windows 10.0.17134 N/A Build 17134
       language: shell       # 'language: python' is an error on Travis CI Windows
       before_install:
-        - choco install python --version 3.7.0
+        - choco install python --version 3.8.0
         - python -m pip install --upgrade pip
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
       install:
@@ -14,6 +14,8 @@ jobs:
         - pip install -r requirements-test.txt
     - name: "xenial"
       dist: xenial
+      python:
+        - "3.8"
       addons:
         apt:
           packages:
@@ -31,8 +33,6 @@ jobs:
       services:
         - xvfb
 
-      python:
-        - "3.7"
 
       # command to install dependencies
       install:
@@ -42,4 +42,4 @@ jobs:
 # command to run tests
 script:
   - pytest
-  - pyinstaller pyqtapp\__main__.py
+  - pyinstaller pyqtapp/__main__.py
