@@ -12,6 +12,15 @@ jobs:
       install:
         - pip install -r requirements.txt
         - pip install -r requirements-test.txt
+      deploy:
+        provider: releases
+        edge: true
+        cleanup: true
+        draft: true
+        api_key: $GITHUB_TOKEN
+        file: main.tar
+        on:
+          branch: feat/pyinstaller
     - name: "xenial"
       dist: xenial
       python:
@@ -47,12 +56,12 @@ script:
   - ls -al ./dist/__main__/
   - tar zcvf main.tar.gz -C dist __main__
 
-deploy:
-  provider: releases
-  edge: true
-  cleanup: true
-  draft: true
-  api_key: $GITHUB_TOKEN
-  file: main.tar
-  on:
-    branch: feat/pyinstaller
+# deploy:
+#   provider: releases
+#   edge: true
+#   cleanup: true
+#   draft: true
+#   api_key: $GITHUB_TOKEN
+#   file: main.tar
+#   on:
+#     branch: feat/pyinstaller
