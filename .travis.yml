@@ -15,7 +15,7 @@ jobs:
       deploy:
         provider: releases
         edge: true
-        cleanup: true
+        cleanup: false
         draft: true
         api_key: $GITHUB_TOKEN
         file: main.tar.gz
