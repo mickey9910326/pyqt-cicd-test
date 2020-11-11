@@ -18,7 +18,7 @@ jobs:
         cleanup: false
         draft: true
         api_key: $GITHUB_TOKEN
-        file: main.tar.gz
+        file: $TRAVIS_BUILD_DIR/main.tar.gz
         on:
           branch: feat/pyinstaller
     - name: "xenial"
