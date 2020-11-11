@@ -44,3 +44,4 @@ script:
   - pytest
   - pyinstaller pyqtapp/__main__.py
   - ls -al ./build/__main__/
+  - ls -al ./dist/__main__/
