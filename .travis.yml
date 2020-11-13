@@ -1,5 +1,3 @@
-language: python
-
 jobs:
   include:
     - name: "Python 3.8.0 on Windows"
@@ -12,56 +10,19 @@ jobs:
       install:
         - pip install -r requirements.txt
         - pip install -r requirements-test.txt
+    - stage: test
+      script:
+        - pytest
+    - stage: deploy
+      script:
+        - pyinstaller pyqtapp/__main__.py
+        - tar zcvf main_windows.tar.gz -C dist __main__
       deploy:
         provider: releases
         edge: true
         cleanup: false
         draft: true
         api_key: $GITHUB_TOKEN
-        file: main.tar.gz
+        file: main_windows.tar.gz
         on:
           branch: feat/pyinstaller
-    - name: "xenial"
-      dist: xenial
-      python:
-        - "3.8"
-      addons:
-        apt:
-          packages:
-          - x11-utils
-          - libxkbcommon-x11-0
-          - libxcb-randr0-dev
-          - libxcb-xtest0-dev
-          - libxcb-xinerama0-dev
-          - libxcb-shape0-dev
-          - libxcb-xkb-dev
-          - libxcb-render-util0
-          - libxcb-icccm4
-          - libxcb-keysyms1
-          - libxcb-image0
-      services:
-        - xvfb
-
-
-      # command to install dependencies
-      install:
-        - pip install -r requirements.txt
-        - pip install -r requirements-test.txt
-
-# command to run tests
-script:
-  - pytest
-  - pyinstaller pyqtapp/__main__.py
-  - ls -al ./build/__main__/
-  - ls -al ./dist/__main__/
-  - tar zcvf main.tar.gz -C dist __main__
-
-# deploy:
-#   provider: releases
-#   edge: true
-#   cleanup: true
-#   draft: true
-#   api_key: $GITHUB_TOKEN
-#   file: main.tar
-#   on:
-#     branch: feat/pyinstaller
