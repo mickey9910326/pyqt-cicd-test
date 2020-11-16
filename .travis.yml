@@ -75,7 +75,7 @@ jobs:
       osx_image: xcode10.2  # Python 3.7.3 running on macOS 10.13
       language: shell       # 'language: python' is an error on Travis CI osx
       before_install:
-        - pip3 --upgrade pip
+        - pip3 install -U pip
       install:
         - pip3 install -r requirements.txt
         - pip3 install -U -r requirements-test.txt
