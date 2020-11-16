@@ -64,7 +64,6 @@ jobs:
         provider: releases
         edge: true
         cleanup: false
-        draft: true
         api_key: $GITHUB_TOKEN
         file: main_windows.tar.gz
         on:
@@ -88,7 +87,6 @@ jobs:
         provider: releases
         edge: true
         cleanup: false
-        draft: true
         api_key: $GITHUB_TOKEN
         file: main_osx.tar.gz
         on:
@@ -129,7 +127,6 @@ jobs:
         provider: releases
         edge: true
         cleanup: false
-        draft: true
         api_key: $GITHUB_TOKEN
         file: main_linux.tar.gz
         on:
