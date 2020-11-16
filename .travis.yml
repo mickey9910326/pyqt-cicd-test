@@ -1,3 +1,4 @@
+# .travis.yml
 jobs:
   include:
     - stage: test
@@ -9,9 +10,41 @@ jobs:
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
       install:
         - pip install -r requirements.txt
-        - pip install -r requirements-test.txt
+        - pip install -U -r requirements-test.txt
       script:
-        - pytest
+        - pytest --cov-report=xml --cov=pyqtapp tests/
+      after_success:
+        - codecov
+    - stage: test
+      os: linux
+      dist: xenial
+      language: python
+      python: 3.8
+      services:
+        - xvfb
+      addons:
+        apt:
+          packages:
+          - x11-utils
+          - libxkbcommon-x11-0
+          - libxcb-randr0-dev
+          - libxcb-xtest0-dev
+          - libxcb-xinerama0-dev
+          - libxcb-shape0-dev
+          - libxcb-xkb-dev
+          - libxcb-render-util0
+          - libxcb-icccm4
+          - libxcb-keysyms1
+          - libxcb-image0
+      before_install:
+        - pip install --upgrade pip
+      install:
+        - pip install -r requirements.txt
+        - pip install -U -r requirements-test.txt
+      script:
+        - pytest --cov-report=xml --cov=pyqtapp tests/
+      after_success:
+        - codecov
     - stage: deploy
       os: windows           # Windows 10.0.17134 N/A Build 17134
       language: shell       # 'language: python' is an error on Travis CI Windows
@@ -21,7 +54,7 @@ jobs:
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
       install:
         - pip install -r requirements.txt
-        - pip install -r requirements-test.txt
+        - pip install -U -r requirements-test.txt
       script:
         - pyinstaller pyqtapp/__main__.py
         - tar zcvf main_windows.tar.gz -C dist __main__
