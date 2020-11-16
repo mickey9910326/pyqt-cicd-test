@@ -5,7 +5,7 @@ jobs:
       os: windows           # Windows 10.0.17134 N/A Build 17134
       language: shell       # 'language: python' is an error on Travis CI Windows
       before_install:
-        - choco install python --version 3.8.0
+        - choco install python --version 3.7.9
         - python -m pip install --upgrade pip
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
       install:
@@ -19,7 +19,7 @@ jobs:
       os: linux
       dist: xenial
       language: python
-      python: 3.8
+      python: 3.7.9
       services:
         - xvfb
       addons:
@@ -46,10 +46,12 @@ jobs:
       after_success:
         - codecov
     - stage: deploy
+      name: "Python 3.7.9 on Windows"
+      if: branch = master
       os: windows           # Windows 10.0.17134 N/A Build 17134
       language: shell       # 'language: python' is an error on Travis CI Windows
       before_install:
-        - choco install python --version 3.8.0
+        - choco install python --version 3.7.9
         - python -m pip install --upgrade pip
       env: PATH=/c/Python38:/c/Python38/Scripts:$PATH
       install:
@@ -65,5 +67,64 @@ jobs:
         draft: true
         api_key: $GITHUB_TOKEN
         file: main_windows.tar.gz
-        on:
-          branch: master
+    - stage: deploy
+      # TODO: change to a version that use python 3.7.9
+      name: "Python 3.7.3 on macOS"
+      if: branch = master
+      os: osx
+      osx_image: xcode10.2  # Python 3.7.3 running on macOS 10.13
+      language: shell       # 'language: python' is an error on Travis CI osx
+      before_install:
+        - pip3 --upgrade pip
+      install:
+        - pip3 install -r requirements.txt
+        - pip3 install -U -r requirements-test.txt
+      script:
+        - pyinstaller pyqtapp/__main__.py
+        - tar zcvf main_osx.tar.gz -C dist __main__
+      deploy:
+        provider: releases
+        edge: true
+        cleanup: false
+        draft: true
+        api_key: $GITHUB_TOKEN
+        file: main_osx.tar.gz
+    - stage: deploy
+      name: "Python 3.7.9 on linux xenial"
+      if: branch = master
+      os: linux
+      dist: xenial
+      language: python
+      python: 3.7.9
+      services:
+        - xvfb
+      addons:
+        apt:
+          packages:
+          - x11-utils
+          - libxkbcommon-x11-0
+          - libxcb-randr0-dev
+          - libxcb-xtest0-dev
+          - libxcb-xinerama0-dev
+          - libxcb-shape0-dev
+          - libxcb-xkb-dev
+          - libxcb-render-util0
+          - libxcb-icccm4
+          - libxcb-keysyms1
+          - libxcb-image0
+      before_install:
+        - pip install --upgrade pip
+      if: branch = master
+      install:
+        - pip install -r requirements.txt
+        - pip install -U -r requirements-test.txt
+      script:
+        - pyinstaller pyqtapp/__main__.py
+        - tar zcvf main_linux.tar.gz -C dist __main__
+      deploy:
+        provider: releases
+        edge: true
+        cleanup: false
+        draft: true
+        api_key: $GITHUB_TOKEN
+        file: main_linux.tar.gz
