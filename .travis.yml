@@ -67,6 +67,8 @@ jobs:
         draft: true
         api_key: $GITHUB_TOKEN
         file: main_windows.tar.gz
+        on:
+          tags: true
     - stage: deploy
       # TODO: change to a version that use python 3.7.9
       name: "Python 3.7.3 on macOS"
@@ -89,6 +91,8 @@ jobs:
         draft: true
         api_key: $GITHUB_TOKEN
         file: main_osx.tar.gz
+        on:
+          tags: true
     - stage: deploy
       name: "Python 3.7.9 on linux xenial"
       if: branch = master
@@ -128,3 +132,5 @@ jobs:
         draft: true
         api_key: $GITHUB_TOKEN
         file: main_linux.tar.gz
+        on:
+          tags: true
