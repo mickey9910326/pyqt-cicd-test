@@ -47,6 +47,7 @@ jobs:
         - codecov
     - stage: deploy
       name: "Python 3.7.9 on Windows"
+      if: tag IS blank
       os: windows           # Windows 10.0.17134 N/A Build 17134
       language: shell       # 'language: python' is an error on Travis CI Windows
       before_install:
@@ -70,6 +71,7 @@ jobs:
     - stage: deploy
       # TODO: change to a version that use python 3.7.9
       name: "Python 3.7.3 on macOS"
+      if: tag IS blank
       os: osx
       osx_image: xcode10.2  # Python 3.7.3 running on macOS 10.13
       language: shell       # 'language: python' is an error on Travis CI osx
@@ -91,6 +93,7 @@ jobs:
           tags: true
     - stage: deploy
       name: "Python 3.7.9 on linux xenial"
+      if: tag IS blank
       os: linux
       dist: xenial
       language: python
