@@ -18,6 +18,7 @@ jobs:
     - stage: test
       os: linux
       dist: xenial
+      language: python
       python: 3.8
       services:
         - xvfb
@@ -35,7 +36,6 @@ jobs:
           - libxcb-icccm4
           - libxcb-keysyms1
           - libxcb-image0
-      language: shell       # 'language: python' is an error on Travis CI Windows
       before_install:
         - pip install --upgrade pip
       install:
