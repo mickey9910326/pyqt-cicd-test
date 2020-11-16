@@ -33,4 +33,4 @@ jobs:
         api_key: $GITHUB_TOKEN
         file: main_windows.tar.gz
         on:
-          branch: feat/pyinstaller
+          branch: master
