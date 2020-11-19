@@ -16,6 +16,20 @@ jobs:
       after_success:
         - codecov
     - stage: test
+      # TODO: change to a version that use python 3.7.9
+      os: osx
+      osx_image: xcode10.2  # Python 3.7.3 running on macOS 10.13
+      language: shell       # 'language: python' is an error on Travis CI osx
+      before_install:
+        - pip3 install -U pip
+      install:
+        - pip3 install -r requirements.txt
+        - pip3 install -U -r requirements-test.txt
+      script:
+        - pytest --cov-report=xml --cov=pyqtapp tests/
+      after_success:
+        - codecov
+    - stage: test
       os: linux
       dist: xenial
       language: python
