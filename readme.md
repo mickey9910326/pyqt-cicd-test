@@ -32,31 +32,31 @@ A tag created will trigger deploy jobs. In deploy stage, travis-ci job will use 
 
 2. Go to travis-ci setting page.
 
-![](https://i.imgur.com/CYg56TD.png)
+    ![](https://i.imgur.com/CYg56TD.png)
 
 3. Set the `GITHUB_TOCKEN` environment variable in travis-ci setting page.
 
-Travis-ci use this tocken to get access for your github repo in deploy job.
+    Travis-ci use this tocken to get access for your github repo in deploy job.
 
-![](https://i.imgur.com/TkPUdKO.png)
+    ![](https://i.imgur.com/TkPUdKO.png)
 
-You can generate your key at github.com/settings/tokens/new.
+    You can generate your key at github.com/settings/tokens/new.
 
-![](https://i.imgur.com/WmDRjdN.png)
+    ![](https://i.imgur.com/WmDRjdN.png)
 
-NOTE: This setting is for public repo. If you use pravite repo, just check the repo option for  pravite repo access.
+    NOTE: This setting is for public repo. If you use pravite repo, just check the repo option for  pravite repo access.
 
 4. Set the `CODECOV_TOKEN` environment variable in travis-ci setting page.
 
-In the last of test job, command `codecov` will use this tocken to get access your project on codecov.io and upload test report.
+    In the last of test job, command `codecov` will use this tocken to get access your project on codecov.io and upload test report.
 
-![](https://i.imgur.com/abdsrma.png)
+    ![](https://i.imgur.com/abdsrma.png)
 
-You can get the key of your project at the projecting setting page in codecov.io.
+    You can get the key of your project at the projecting setting page in codecov.io.
 
-app.codecov.io/gh/username/project-name/settings
+    app.codecov.io/gh/username/project-name/settings
 
-![](https://i.imgur.com/m7DajdV.png)
+    ![](https://i.imgur.com/m7DajdV.png)
 
 5. Push a new commit to test it.
 
