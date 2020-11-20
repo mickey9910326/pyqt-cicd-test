@@ -1,6 +1,6 @@
 # pyqt-cicd-demo
 
-[![Build Status](https://travis-ci.com/mickey9910326/pyqt-cicd-test.svg?branch=master)](https://travis-ci.com/mickey9910326/pyqt-cicd-test)
+[![Build Status](https://travis-ci.com/mickey9910326/pyqt-cicd-demo.svg?branch=master)](https://travis-ci.com/mickey9910326/pyqt-cicd-demo)
 [![codecov](https://codecov.io/gh/mickey9910326/pyqt-cicd-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/mickey9910326/pyqt-cicd-demo)
 
 ## About
